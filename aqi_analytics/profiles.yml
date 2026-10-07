@@ -1,0 +1,21 @@
+aqi_analytics_duckdb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH') }}"
+      schema: aqi_schema
+      threads: 4
+
+      extensions:
+        - httpfs
+
+      secrets:
+        - type: s3
+          provider: config
+          key_id: "{{ env_var('MINIO_ROOT_USER') }}"
+          secret: "{{ env_var('MINIO_ROOT_PASSWORD') }}"
+          endpoint: "localhost:9000"
+          region: "us-east-1"
+          url_style: path
+          use_ssl: false
