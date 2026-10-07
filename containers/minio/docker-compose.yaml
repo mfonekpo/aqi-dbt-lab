@@ -1,0 +1,28 @@
+services:
+  minio:
+      image: quay.io/minio/aistor/minio:latest
+      ports:
+        - "9000:9000"
+        - "9001:9001"
+
+      env_file:
+        - "../../.env"
+
+      volumes:
+        - ./minio_data:/data
+        - ./minio.license:/minio.license:ro
+
+      healthcheck:
+        test: ["CMD", "mc", "ready", "local"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+
+      command: server /data --console-address ":9001"
+      restart: unless-stopped
+
+
+networks:
+  default:
+    name: medallion
+    external: true

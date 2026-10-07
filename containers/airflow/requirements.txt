@@ -1,0 +1,6 @@
+# Versions are constrained by the matching Airflow image's constraints.txt.
+boto3
+pydantic
+python-dotenv
+requests
+tenacity

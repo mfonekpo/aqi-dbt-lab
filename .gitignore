@@ -118,3 +118,6 @@ terraform.tfstate.backup
 *.jar
 
 *.p8
+minio_data/
+*.minio.sys
+minio.license

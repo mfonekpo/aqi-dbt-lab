@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: bronze
+    tables:
+      - name: raw_files
+        config:
+          external_location: >
+            read_json(
+              '{{ env_var("RAW_AQI_URI") }}',
+              format='unstructured',
+              filename=true
+            )
