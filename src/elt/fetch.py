@@ -1,6 +1,6 @@
 import logging
 import os
-
+from typing import Any
 import requests
 from dotenv import load_dotenv
 from tenacity import (
@@ -45,7 +45,7 @@ def validate_env() -> None:
     before_sleep=before_sleep_log(logger, logging.WARNING),
     reraise=True,
 )
-def fetch_air_quality() -> bytes:
+def fetch_air_quality() -> dict[str, Any]:
     """Fetch a successful, parseable JSON response and return its body as bytes."""
 
     validate_env()
